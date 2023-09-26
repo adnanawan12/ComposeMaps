@@ -8,8 +8,10 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerInfoWindow
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.maps.android.compose.rememberMarkerState
 
 
 @Composable
@@ -19,6 +21,9 @@ fun MapView(context: Context, location: LatLng) {
         position = CameraPosition.fromLatLngZoom(location, 16f)
     }
 
+    val infoWindowState = rememberMarkerState(position = location)
+
+
 
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
@@ -27,6 +32,16 @@ fun MapView(context: Context, location: LatLng) {
         Marker(
             state = MarkerState(position = location),
         )
+
+        MarkerInfoWindow(
+            state = infoWindowState,
+            title = "My location",
+            snippet = "Location custom info window",
+            content = {
+                CustomInfoWindow(title = it.title, description = it.snippet)
+            }
+        )
+
     }
 
 
