@@ -2,10 +2,12 @@ package com.example.composemaps.presentation.composeables
 
 import android.content.Context
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.Circle
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerInfoWindow
@@ -41,6 +43,14 @@ fun MapView(context: Context, location: LatLng) {
                 CustomInfoWindow(title = it.title, description = it.snippet)
             }
         )
+
+        Circle(
+            center = location,
+            fillColor = MaterialTheme.colorScheme.secondaryContainer,
+            strokeColor = MaterialTheme.colorScheme.secondaryContainer,
+            radius = 300.00
+        )
+
 
     }
 
