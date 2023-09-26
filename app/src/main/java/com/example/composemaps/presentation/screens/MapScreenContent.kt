@@ -10,6 +10,8 @@ import com.example.composemaps.permissions.PermissionAction
 import com.example.composemaps.permissions.PermissionDialog
 import kotlinx.coroutines.launch
 import com.example.composemaps.R
+import com.example.composemaps.presentation.composeables.MapView
+import com.google.android.gms.maps.model.LatLng
 
 @Composable
 fun MapScreenContent(
@@ -40,6 +42,11 @@ fun MapScreenContent(
                 fetchLocationUpdates.invoke()
             }
         }
+    }
+
+    val currentLocation = LatLng(1.35, 103.87)
+    if (showMap) {
+        MapView(context, currentLocation)
     }
 
 }
